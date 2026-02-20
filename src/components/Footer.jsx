@@ -1,7 +1,8 @@
 const footerStyle = {
   background: '#fafbfd',
   borderTop: '1px solid var(--color-border-light)',
-  padding: '64px 0 40px',
+  padding: '72px 0 40px',
+  position: 'relative',
 };
 
 const innerStyle = {

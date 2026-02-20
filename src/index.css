@@ -95,6 +95,9 @@ img {
 .reveal-delay-5 { transition-delay: 0.5s; }
 
 /* ── Hide Unicorn Studio watermark ── */
+a[href*="unicorn.studio?utm_source=public-url"] {
+  display: none !important;
+}
 [data-us-project] a[href*="unicorn.studio"] {
   display: none !important;
 }

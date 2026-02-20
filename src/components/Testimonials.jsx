@@ -41,7 +41,7 @@ export default function Testimonials() {
   const rest = testimonials.slice(1);
 
   return (
-    <section id="reviews" style={{ padding: '120px 0', background: 'var(--color-bg-soft)' }}>
+    <section id="reviews" style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
         {/* Header */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '56px' }}>
@@ -55,10 +55,13 @@ export default function Testimonials() {
           </div>
           <h2 style={{
             fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
-            color: 'var(--color-text)', letterSpacing: '-0.02em',
+            color: 'var(--color-text)', letterSpacing: '-0.02em', marginBottom: '16px',
           }}>
             학부모님이 직접 전하는<br />SCOLABS 경험
           </h2>
+          <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+            실제 학부모님들의 생생한 후기를 확인하세요.
+          </p>
         </div>
 
         {/* Featured + 3 cards layout */}
@@ -136,6 +139,7 @@ export default function Testimonials() {
                   transition: 'all 0.3s ease', flex: 1,
                   display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
                   borderLeft: `3px solid ${t.color}`,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
                 }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.05)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}

@@ -43,13 +43,25 @@ function AnimatedNumber({ value, suffix, decimal }) {
 
 export default function Stats() {
   return (
-    <section style={{ padding: '0', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border-light)' }}>
+    <section style={{
+      padding: '0', background: 'var(--color-bg-soft)',
+      position: 'relative', overflow: 'hidden',
+    }}>
+      {/* Gradient top line — visual bridge from dark hero */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+        background: 'linear-gradient(90deg, #6c5ce7, #4a6cf7, #00b894, #e17055)',
+      }}></div>
       <div style={{
         maxWidth: 'var(--container-max)', margin: '0 auto', padding: '64px var(--container-padding)',
-        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '32px',
+        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px',
       }}>
         {stats.map((s) => (
-          <div key={s.label} style={{ textAlign: 'center', padding: '24px 16px' }}>
+          <div key={s.label} style={{
+            textAlign: 'center', padding: '28px 16px',
+            background: '#fff', borderRadius: 'var(--radius-lg)',
+            border: '1px solid var(--color-border-light)',
+          }}>
             <div style={{
               width: '52px', height: '52px', borderRadius: '16px', background: `${s.color}12`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',

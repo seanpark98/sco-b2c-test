@@ -40,8 +40,16 @@ export default function Services() {
   const containerRef = useRevealAll();
 
   return (
-    <section id="programs" style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
+    <section id="programs" style={{ padding: '120px 0', background: 'var(--color-bg-soft)', position: 'relative', overflow: 'hidden' }}>
+      {/* Subtle background pattern */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(circle, var(--color-border-light) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
+        opacity: 0.5,
+        pointerEvents: 'none',
+      }}></div>
+      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)', position: 'relative' }} ref={containerRef}>
         {/* Header */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <div style={{

@@ -36,8 +36,16 @@ export default function Management() {
   const totalItems = categories.reduce((sum, c) => sum + c.items.length, 0);
 
   return (
-    <section id="management" style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
+    <section id="management" style={{ padding: '120px 0', background: 'var(--color-bg-soft)', position: 'relative', overflow: 'hidden' }}>
+      {/* Subtle background pattern */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(circle, var(--color-border-light) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
+        opacity: 0.5,
+        pointerEvents: 'none',
+      }}></div>
+      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)', position: 'relative' }} ref={containerRef}>
         {/* Header */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <div style={{
@@ -111,9 +119,14 @@ export default function Management() {
                           width: '24px', height: '24px', borderRadius: '8px', flexShrink: 0,
                           background: `${cat.color}10`,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: '11px', fontWeight: 700, color: cat.color,
-                        }}>{startNum + ii + 1}</span>
-                        <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--color-text)' }}>{item}</span>
+                          fontSize: '12px', color: cat.color,
+                        }}>
+                          <iconify-icon icon="solar:check-read-linear"></iconify-icon>
+                        </span>
+                        <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--color-text)', flex: 1 }}>{item}</span>
+                        <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-text-tertiary)', flexShrink: 0 }}>
+                          {String(startNum + ii + 1).padStart(2, '0')}
+                        </span>
                       </div>
                     ))}
                   </div>

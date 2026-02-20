@@ -13,7 +13,7 @@ export default function AddOns() {
   const containerRef = useRevealAll();
 
   return (
-    <section style={{ padding: '120px 0', background: 'var(--color-bg-soft)' }}>
+    <section style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
         {/* Header */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
@@ -44,9 +44,10 @@ export default function AddOns() {
                 background: '#fff', border: '1px solid var(--color-border-light)',
                 borderRadius: 'var(--radius-lg)', overflow: 'hidden',
                 transition: 'all 0.3s ease', position: 'relative',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.07)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = a.color + '60'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 16px 48px ${a.color}12`; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.03)'; }}
             >
               {/* Color accent top bar */}
               <div style={{ height: '3px', background: a.color }}></div>

@@ -2,11 +2,11 @@ import { useRevealAll } from '../hooks/useReveal';
 import { useNavigate } from 'react-router-dom';
 
 const parts = [
-  { num: 1, title: '우리 자녀는 왜 성적이 오르지 않을까?', answer: '공부방법을 몰라서이다.', size: 'large' },
-  { num: 2, title: '우리 자녀는 왜 공부방법을 모를까?', answer: '학습습관(혼공경험)이 없어서이다.', size: 'large' },
-  { num: 3, title: '학부모님의 착각이 학습습관을 망친다', answer: '잘못된 생각이 자녀의 공부습관을 결정합니다.', size: 'small' },
-  { num: 4, title: '우리 자녀의 학습습관은 어느 단계?', answer: '순공시간 가이드로 진단합니다.', size: 'small' },
-  { num: 5, title: '성적향상 4단계 필수전략', answer: '습관, 학습양, 효율, 선택과 집중.', size: 'small' },
+  { num: 1, title: '우리 자녀는 왜 성적이 오르지 않을까?', answer: '공부방법을 몰라서이다.', size: 'large', color: '#6c5ce7' },
+  { num: 2, title: '우리 자녀는 왜 공부방법을 모를까?', answer: '학습습관(혼공경험)이 없어서이다.', size: 'large', color: '#4a6cf7' },
+  { num: 3, title: '학부모님의 착각이 학습습관을 망친다', answer: '잘못된 생각이 자녀의 공부습관을 결정합니다.', size: 'small', color: '#e17055' },
+  { num: 4, title: '우리 자녀의 학습습관은 어느 단계?', answer: '순공시간 가이드로 진단합니다.', size: 'small', color: '#00b894' },
+  { num: 5, title: '성적향상 4단계 필수전략', answer: '습관, 학습양, 효율, 선택과 집중.', size: 'small', color: '#fdcb6e' },
 ];
 
 /* ── Rich Visual Illustrations (Enhanced) ── */
@@ -309,17 +309,21 @@ export default function Features() {
             return (
               <div key={p.num} className={`reveal reveal-delay-${i + 1}`}
                 style={{
-                  background: 'var(--color-bg-soft)', borderRadius: 'var(--radius-lg)',
+                  background: '#fff', borderRadius: 'var(--radius-lg)',
                   border: '1px solid var(--color-border-light)', overflow: 'hidden',
                   transition: 'all 0.3s ease', cursor: 'pointer',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
                 }}
                 onClick={() => navigate(`/topic/${p.num}`)}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(108,92,231,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = p.color + '50'; e.currentTarget.style.boxShadow = `0 12px 40px ${p.color}14`; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.03)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
                 <div style={{ borderBottom: '1px solid var(--color-border-light)', minHeight: '260px' }}><Visual /></div>
                 <div style={{ padding: '28px 28px 32px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                    <iconify-icon icon="solar:arrow-right-up-linear" style={{ fontSize: '18px', color: p.color, flexShrink: 0 }}></iconify-icon>
+                  </div>
                   <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{p.answer}</p>
                 </div>
               </div>
@@ -334,17 +338,21 @@ export default function Features() {
             return (
               <div key={p.num} className={`reveal reveal-delay-${i + 3}`}
                 style={{
-                  background: 'var(--color-bg-soft)', borderRadius: 'var(--radius-lg)',
+                  background: '#fff', borderRadius: 'var(--radius-lg)',
                   border: '1px solid var(--color-border-light)', overflow: 'hidden',
                   transition: 'all 0.3s ease', cursor: 'pointer',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
                 }}
                 onClick={() => navigate(`/topic/${p.num}`)}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(108,92,231,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = p.color + '50'; e.currentTarget.style.boxShadow = `0 12px 40px ${p.color}14`; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.03)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
                 <div style={{ borderBottom: '1px solid var(--color-border-light)' }}><Visual /></div>
                 <div style={{ padding: '24px 24px 28px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 700, color: 'var(--color-text)', marginBottom: '6px', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 700, color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                    <iconify-icon icon="solar:arrow-right-up-linear" style={{ fontSize: '16px', color: p.color, flexShrink: 0 }}></iconify-icon>
+                  </div>
                   <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{p.answer}</p>
                 </div>
               </div>
