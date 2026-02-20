@@ -43,39 +43,29 @@ function AnimatedNumber({ value, suffix, decimal }) {
 
 export default function Stats() {
   return (
-    <section style={{
-      padding: '0', background: 'var(--color-bg-soft)',
-      position: 'relative', overflow: 'hidden',
-    }}>
-      {/* Gradient top line — visual bridge from dark hero */}
+    <section style={{ padding: '0', background: 'var(--color-bg-soft)' }}>
       <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
-        background: 'linear-gradient(90deg, #6c5ce7, #4a6cf7, #00b894, #e17055)',
-      }}></div>
-      <div style={{
-        maxWidth: 'var(--container-max)', margin: '0 auto', padding: '64px var(--container-padding)',
-        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px',
+        maxWidth: 'var(--container-max)', margin: '0 auto', padding: '56px var(--container-padding)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        {stats.map((s) => (
-          <div key={s.label} style={{
-            textAlign: 'center', padding: '28px 16px',
-            background: '#fff', borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--color-border-light)',
-          }}>
-            <div style={{
-              width: '52px', height: '52px', borderRadius: '16px', background: `${s.color}12`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 16px', color: s.color, fontSize: '24px',
-            }}>
-              <iconify-icon icon={s.icon}></iconify-icon>
+        {stats.map((s, i) => (
+          <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <iconify-icon icon={s.icon} style={{ fontSize: '20px', color: s.color }}></iconify-icon>
+            <div>
+              <span style={{
+                fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 700,
+                color: 'var(--color-text)', letterSpacing: '-0.02em',
+              }}>
+                <AnimatedNumber value={s.value} suffix={s.suffix} decimal={s.decimal} />
+              </span>
+              <span style={{
+                fontSize: '13px', color: 'var(--color-text-tertiary)', fontWeight: 500,
+                marginLeft: '8px',
+              }}>{s.label}</span>
             </div>
-            <span style={{
-              fontFamily: 'var(--font-display)', fontSize: '38px', fontWeight: 700,
-              color: 'var(--color-text)', letterSpacing: '-0.02em', marginBottom: '6px', display: 'block',
-            }}>
-              <AnimatedNumber value={s.value} suffix={s.suffix} decimal={s.decimal} />
-            </span>
-            <span style={{ fontSize: '14px', color: 'var(--color-text-secondary)', fontWeight: 500 }}>{s.label}</span>
+            {i < stats.length - 1 && (
+              <div style={{ width: '1px', height: '28px', background: 'var(--color-border)', marginLeft: '32px' }}></div>
+            )}
           </div>
         ))}
       </div>

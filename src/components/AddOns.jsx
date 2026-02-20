@@ -16,22 +16,14 @@ export default function AddOns() {
     <section style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
         {/* Header */}
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px',
-            background: 'var(--color-blue-soft)', color: 'var(--color-blue)',
-            borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, marginBottom: '20px',
-          }}>
-            <iconify-icon icon="solar:add-circle-bold" style={{ fontSize: '16px' }}></iconify-icon>
-            추가 옵션
-          </div>
+        <div className="reveal" style={{ marginBottom: '48px' }}>
           <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
-            color: 'var(--color-text)', letterSpacing: '-0.02em', marginBottom: '16px',
+            fontFamily: 'var(--font-display)', fontSize: '34px', fontWeight: 700, lineHeight: 1.3,
+            color: 'var(--color-text)', letterSpacing: '-0.02em',
           }}>
             추가 학습 서비스
           </h2>
-          <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: 1.7, marginTop: '12px', whiteSpace: 'nowrap' }}>
             기본 프로그램에 더해 자녀에게 필요한 서비스를 선택하세요.
           </p>
         </div>

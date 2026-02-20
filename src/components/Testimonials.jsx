@@ -43,25 +43,21 @@ export default function Testimonials() {
   return (
     <section id="reviews" style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
-        {/* Header */}
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '56px' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px',
-            background: 'var(--color-blue-soft)', color: 'var(--color-blue)',
-            borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, marginBottom: '20px',
+        {/* Header — left aligned, simple */}
+        <div className="reveal" style={{ marginBottom: '40px' }}>
+          <span style={{
+            fontSize: '12px', fontWeight: 600, letterSpacing: '0.08em',
+            color: 'var(--color-text-tertiary)', textTransform: 'uppercase',
+            marginBottom: '12px', display: 'block',
           }}>
-            <iconify-icon icon="solar:chat-round-dots-bold" style={{ fontSize: '16px' }}></iconify-icon>
             학부모 후기
-          </div>
+          </span>
           <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
-            color: 'var(--color-text)', letterSpacing: '-0.02em', marginBottom: '16px',
+            fontFamily: 'var(--font-display)', fontSize: '34px', fontWeight: 700, lineHeight: 1.3,
+            color: 'var(--color-text)', letterSpacing: '-0.02em',
           }}>
-            학부모님이 직접 전하는<br />SCOLABS 경험
+            학부모님이 직접 전하는 SCOLABS 경험
           </h2>
-          <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-            실제 학부모님들의 생생한 후기를 확인하세요.
-          </p>
         </div>
 
         {/* Featured + 3 cards layout */}

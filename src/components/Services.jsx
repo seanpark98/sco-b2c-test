@@ -40,33 +40,23 @@ export default function Services() {
   const containerRef = useRevealAll();
 
   return (
-    <section id="programs" style={{ padding: '120px 0', background: 'var(--color-bg-soft)', position: 'relative', overflow: 'hidden' }}>
-      {/* Subtle background pattern */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(circle, var(--color-border-light) 1px, transparent 1px)',
-        backgroundSize: '40px 40px',
-        opacity: 0.5,
-        pointerEvents: 'none',
-      }}></div>
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)', position: 'relative' }} ref={containerRef}>
+    <section id="programs" style={{ padding: '120px 0', background: 'var(--color-bg-soft)' }}>
+      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
         {/* Header */}
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px',
-            background: 'var(--color-accent-soft)', color: 'var(--color-accent)',
-            borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, marginBottom: '20px',
+        <div className="reveal" style={{ marginBottom: '48px' }}>
+          <span style={{
+            fontSize: '12px', fontWeight: 600, letterSpacing: '0.08em',
+            color: 'var(--color-accent)', textTransform: 'uppercase', marginBottom: '12px', display: 'block',
           }}>
-            <iconify-icon icon="solar:widget-bold" style={{ fontSize: '16px' }}></iconify-icon>
             SB학습관리
-          </div>
+          </span>
           <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
-            color: 'var(--color-text)', marginBottom: '16px', letterSpacing: '-0.02em',
+            fontFamily: 'var(--font-display)', fontSize: '38px', fontWeight: 700, lineHeight: 1.2,
+            color: 'var(--color-text)', letterSpacing: '-0.02em',
           }}>
-            학습습관 형성을 위한<br />맞춤 프로그램
+            학습습관 형성을 위한 맞춤 프로그램
           </h2>
-          <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: 1.7, marginTop: '12px', whiteSpace: 'nowrap' }}>
             5가지 프로그램 중 자녀에게 맞는 학습관리를 선택하세요.
           </p>
         </div>
@@ -80,7 +70,7 @@ export default function Services() {
                 border: '1px solid var(--color-border-light)', overflow: 'hidden',
                 transition: 'all 0.3s ease', cursor: 'default',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.08)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = (s.dark ? '#555' : s.color + '50'); e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 16px 48px ${s.dark ? 'rgba(0,0,0,0.15)' : s.color + '12'}`; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
             >
               {/* Visual top area */}
@@ -146,7 +136,7 @@ export default function Services() {
                 transition: 'all 0.3s ease', cursor: 'default',
                 position: 'relative',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.08)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = s.color + '50'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = `0 16px 48px ${s.color}12`; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
             >
               {/* Tag */}
@@ -199,6 +189,47 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+        {/* Tier progression visual */}
+        <div className="reveal reveal-delay-5" style={{
+          marginTop: '32px', padding: '28px 32px',
+          background: '#fff', borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--color-border-light)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-text-secondary)' }}>
+              <iconify-icon icon="solar:arrow-right-up-linear" style={{ fontSize: '14px', marginRight: '6px', color: 'var(--color-accent)' }}></iconify-icon>
+              프로그램 단계별 비교
+            </span>
+            <span style={{ fontSize: '11px', color: 'var(--color-text-tertiary)' }}>TIER 1 → TIER 5</span>
+          </div>
+          <div style={{ position: 'relative' }}>
+            {/* Track */}
+            <div style={{
+              height: '4px', borderRadius: '2px',
+              background: 'linear-gradient(90deg, #6c5ce7, #e17055, #1a1a2e, #d4a017, #4a6cf7)',
+              marginBottom: '12px',
+            }}></div>
+            {/* Dots */}
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {services.map((s) => (
+                <div key={s.num} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                  <div style={{
+                    width: '28px', height: '28px', borderRadius: '50%',
+                    background: s.dark ? '#1a1a2e' : `${s.color}15`,
+                    border: `2px solid ${s.dark ? '#1a1a2e' : s.color}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <iconify-icon icon={s.icon} style={{ fontSize: '13px', color: s.dark ? '#fff' : s.color }}></iconify-icon>
+                  </div>
+                  <span style={{
+                    fontSize: '10px', fontWeight: 600,
+                    color: 'var(--color-text-tertiary)', whiteSpace: 'nowrap',
+                  }}>{s.name.replace('스코 ', '')}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -36,35 +36,28 @@ export default function Management() {
   const totalItems = categories.reduce((sum, c) => sum + c.items.length, 0);
 
   return (
-    <section id="management" style={{ padding: '120px 0', background: 'var(--color-bg-soft)', position: 'relative', overflow: 'hidden' }}>
-      {/* Subtle background pattern */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(circle, var(--color-border-light) 1px, transparent 1px)',
-        backgroundSize: '40px 40px',
-        opacity: 0.5,
-        pointerEvents: 'none',
-      }}></div>
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)', position: 'relative' }} ref={containerRef}>
-        {/* Header */}
-        <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px',
-            background: '#e8faf3', color: '#00b894',
-            borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, marginBottom: '20px',
-          }}>
-            <iconify-icon icon="solar:shield-check-bold" style={{ fontSize: '16px' }}></iconify-icon>
-            관리목록
+    <section id="management" style={{ padding: '120px 0', background: 'var(--color-bg-soft)' }}>
+      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
+        {/* Header — left aligned with big number */}
+        <div className="reveal" style={{
+          display: 'flex', alignItems: 'flex-end', gap: '24px',
+          marginBottom: '48px',
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-display)', fontSize: '64px', fontWeight: 800,
+            color: 'var(--color-text)', letterSpacing: '-0.03em', lineHeight: 1,
+          }}>{totalItems}</span>
+          <div style={{ paddingBottom: '6px' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 700, lineHeight: 1.3,
+              color: 'var(--color-text)', letterSpacing: '-0.01em',
+            }}>
+              가지 체계적 관리
+            </h2>
+            <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.6, marginTop: '4px' }}>
+              4개 영역에 걸쳐 빈틈없는 학습관리를 제공합니다.
+            </p>
           </div>
-          <h2 style={{
-            fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
-            color: 'var(--color-text)', letterSpacing: '-0.02em', marginBottom: '16px',
-          }}>
-            {totalItems}가지 체계적 관리
-          </h2>
-          <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>
-            4개 영역에 걸쳐 빈틈없는 학습관리를 제공합니다.
-          </p>
         </div>
 
         {/* Category grid */}
@@ -79,7 +72,7 @@ export default function Management() {
                   border: '1px solid var(--color-border-light)', overflow: 'hidden',
                   transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.06)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = cat.color + '40'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `0 16px 48px ${cat.color}10`; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
               >
                 {/* Category header with gradient */}
