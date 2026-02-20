@@ -72,7 +72,7 @@ export default function Footer() {
               marginBottom: '12px',
             }}>
               <iconify-icon icon="solar:square-academic-cap-bold" style={{ fontSize: '24px', color: 'var(--color-accent)' }}></iconify-icon>
-              QRAFT
+              SCOLABS
             </div>
             <p style={{
               fontSize: '13px',
@@ -114,7 +114,7 @@ export default function Footer() {
         {/* Bottom */}
         <div style={bottomRowStyle}>
           <span style={{ fontSize: '13px', color: 'var(--color-text-tertiary)' }}>
-            © 2026 QRAFT. All rights reserved.
+            © 2026 SCOLABS. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: '16px' }}>
             {[

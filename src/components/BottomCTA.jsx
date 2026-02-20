@@ -76,7 +76,7 @@ export default function BottomCTA() {
               maxWidth: '440px',
               margin: '0 auto 40px',
             }}>
-              52,000명 이상의 학생이 QRAFT와 함께<br />
+              52,000명 이상의 학생이 SCOLABS와 함께<br />
               더 스마트하게 공부하고 있습니다.
             </p>
 

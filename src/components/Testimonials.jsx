@@ -25,7 +25,7 @@ const testimonials = [
   {
     name: '정민수',
     role: '연세대 물리학과 석사',
-    text: '대학원 연구 중 궁금한 점을 바로 물어볼 수 있는 플랫폼이 없었는데, QRAFT 덕분에 연구 속도가 확 빨라졌습니다.',
+    text: '대학원 연구 중 궁금한 점을 바로 물어볼 수 있는 플랫폼이 없었는데, SCOLABS 덕분에 연구 속도가 확 빨라졌습니다.',
     avatar: '민',
     color: '#4a6cf7',
   },
@@ -79,7 +79,7 @@ export default function Testimonials() {
             letterSpacing: '-0.02em',
             marginBottom: '16px',
           }}>
-            학생들이 직접 전하는<br />QRAFT 경험
+            학생들이 직접 전하는<br />SCOLABS 경험
           </h2>
         </div>
 

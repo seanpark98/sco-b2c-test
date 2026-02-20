@@ -92,7 +92,7 @@ export default function Navbar() {
     <nav style={currentNavStyle}>
       <div style={{ ...logoStyle, color: currentLogoColor }}>
         <iconify-icon icon="solar:square-academic-cap-bold" style={{ fontSize: '26px' }}></iconify-icon>
-        QRAFT
+        SCOLABS
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
