@@ -130,15 +130,15 @@ export default function Hero() {
       <div style={contentWrapper}>
         <div>
           <h1 style={headlineStyle}>
-            질문하면,<br />
-            답이 열린다.
+            진짜 공부를 하자,<br />
+            하자공부.
           </h1>
         </div>
 
         <div style={bottomBar}>
           <p style={descStyle}>
-            AI 기반 교육 Q&A 플랫폼에서 전문가와 함께<br />
-            실시간으로 궁금증을 해결하고 성장하세요.
+            열심히만 하는 공부는 이제 그만,<br />
+            '성적 불변의 법칙'을 깨십시오.
           </p>
           <div style={ctaGroup}>
             <span
@@ -150,7 +150,7 @@ export default function Hero() {
                 e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
               }}
             >
-              플랫폼 둘러보기
+              자세히 알아보기
             </span>
             <span
               style={ctaArrowStyle}

@@ -1,261 +1,222 @@
 import { useRevealAll } from '../hooks/useReveal';
+import { useNavigate } from 'react-router-dom';
 
-const features = [
-  {
-    icon: 'solar:magic-stick-3-bold',
-    title: 'AI 기반 답변 생성',
-    desc: 'GPT 기반의 지능형 답변 시스템이 복잡한 질문도 정확하게 분석하여 맞춤형 답변을 제공합니다.',
-    visual: 'ai',
-    size: 'large',
-  },
-  {
-    icon: 'solar:chart-2-bold',
-    title: '학습 대시보드',
-    desc: '개인 맞춤 대시보드에서 학습 진도, 취약 영역, 성과 추이를 실시간으로 확인하고 관리할 수 있습니다.',
-    visual: 'dashboard',
-    size: 'large',
-  },
-  {
-    icon: 'solar:users-group-two-rounded-bold',
-    title: '실시간 협업 학습',
-    desc: '동료 학습자들과 함께 실시간으로 토론하고 인사이트를 나눠보세요.',
-    visual: 'collab',
-    size: 'small',
-  },
-  {
-    icon: 'solar:routing-bold',
-    title: '맞춤형 학습 경로',
-    desc: '개인별 수준에 맞는 최적화된 커리큘럼을 자동으로 설계합니다.',
-    visual: 'path',
-    size: 'small',
-  },
-  {
-    icon: 'solar:shield-check-bold',
-    title: '검증된 전문가 답변',
-    desc: '각 분야 인증된 전문가의 검증을 거친 신뢰할 수 있는 답변을 보장합니다.',
-    visual: 'verified',
-    size: 'small',
-  },
+const parts = [
+  { num: 1, title: '우리 자녀는 왜 성적이 오르지 않을까?', answer: '공부방법을 몰라서이다.', size: 'large' },
+  { num: 2, title: '우리 자녀는 왜 공부방법을 모를까?', answer: '학습습관(혼공경험)이 없어서이다.', size: 'large' },
+  { num: 3, title: '학부모님의 착각이 학습습관을 망친다', answer: '잘못된 생각이 자녀의 공부습관을 결정합니다.', size: 'small' },
+  { num: 4, title: '우리 자녀의 학습습관은 어느 단계?', answer: '순공시간 가이드로 진단합니다.', size: 'small' },
+  { num: 5, title: '성적향상 4단계 필수전략', answer: '습관, 학습양, 효율, 선택과 집중.', size: 'small' },
 ];
 
-/* ── Card illustration components ── */
-function AIVisual() {
+/* ── Rich Visual Illustrations (Enhanced) ── */
+function Part1Visual() {
   return (
-    <div style={{
-      padding: '28px 24px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '12px',
-    }}>
-      {/* Integration pills */}
+    <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '12px', background: 'linear-gradient(180deg, #fafbff 0%, #f8f9fc 100%)' }}>
+      {/* Subject pills */}
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {['수학', '과학', '영어', '코딩'].map((t) => (
-          <span key={t} style={{
-            padding: '6px 14px',
-            borderRadius: 'var(--radius-full)',
-            border: '1px solid var(--color-border)',
-            fontSize: '12px',
-            fontWeight: 500,
-            color: 'var(--color-text-secondary)',
-            background: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
+        {[
+          { name: '수학', icon: 'solar:calculator-bold', color: '#6c5ce7' },
+          { name: '영어', icon: 'solar:global-bold', color: '#4a6cf7' },
+          { name: '국어', icon: 'solar:book-2-bold', color: '#00b894' },
+          { name: '과학', icon: 'solar:test-tube-bold', color: '#e17055' },
+        ].map((t) => (
+          <span key={t.name} style={{
+            padding: '7px 14px', borderRadius: 'var(--radius-full)',
+            border: '1px solid var(--color-border-light)', fontSize: '12px', fontWeight: 600,
+            color: t.color, background: '#fff',
+            display: 'flex', alignItems: 'center', gap: '6px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
           }}>
-            <iconify-icon icon="solar:bookmark-bold" style={{ fontSize: '14px', color: 'var(--color-accent)' }}></iconify-icon>
-            {t}
+            <iconify-icon icon={t.icon} style={{ fontSize: '14px' }}></iconify-icon>
+            {t.name}
           </span>
         ))}
       </div>
-
-      {/* AI Processing card */}
+      {/* Alert card */}
       <div style={{
-        background: 'var(--color-accent)',
-        color: '#fff',
-        padding: '10px 16px',
-        borderRadius: 'var(--radius-md)',
-        fontSize: '13px',
-        fontWeight: 600,
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '8px',
-        alignSelf: 'center',
-      }}>
-        <iconify-icon icon="solar:magic-stick-3-bold" style={{ fontSize: '16px' }}></iconify-icon>
-        AI 분석 중...
-      </div>
-
-      {/* Chat bubble */}
-      <div style={{
-        background: '#fff',
-        border: '1px solid var(--color-border)',
-        borderRadius: 'var(--radius-md)',
-        padding: '14px 16px',
-        fontSize: '13px',
-        color: 'var(--color-text-secondary)',
-        lineHeight: 1.6,
+        background: 'linear-gradient(135deg, #fff5f3 0%, #ffe8e3 100%)', border: '1px solid #ffc4b8',
+        borderRadius: 'var(--radius-md)', padding: '16px 18px', fontSize: '13px', color: '#c0392b',
+        lineHeight: 1.7, boxShadow: '0 2px 12px rgba(192,57,43,0.06)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <iconify-icon icon="solar:stars-bold" style={{ color: 'var(--color-accent)', fontSize: '16px' }}></iconify-icon>
-          <span style={{ fontWeight: 600, color: 'var(--color-text)', fontSize: '12px' }}>AI 답변 생성 완료</span>
-        </div>
-        이차방정식의 근의 공식은 x = (-b ± √(b²-4ac)) / 2a 입니다...
-      </div>
-
-      {/* User avatars */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '4px', justifyContent: 'center' }}>
-        {['A', 'B', 'C', 'D', 'E'].map((u, i) => (
-          <div key={i} style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: ['#6c5ce7', '#00b894', '#fdcb6e', '#e17055', '#74b9ff'][i],
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '11px',
-            fontWeight: 700,
-            color: '#fff',
-            border: '2px solid #fff',
-            marginLeft: i > 0 ? '-8px' : '0',
+          <div style={{
+            width: '24px', height: '24px', borderRadius: '8px', background: '#c0392b',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            {u}
+            <iconify-icon icon="solar:danger-triangle-bold" style={{ fontSize: '13px', color: '#fff' }}></iconify-icon>
           </div>
-        ))}
-        <span style={{ fontSize: '12px', color: 'var(--color-text-tertiary)', marginLeft: '8px' }}>
-          52,000+ 사용자가 이용 중
-        </span>
+          <span style={{ fontWeight: 700, fontSize: '13px' }}>성적 불변의 법칙</span>
+        </div>
+        열심히 하는데 성적이 오르지 않는다면, 방법이 잘못된 것입니다.
       </div>
+      {/* Question bubbles */}
+      {[
+        { q: '"일타 강사인데 왜 점수가 안 나오죠?"', align: 'flex-start' },
+        { q: '"밤늦게까지 앉아있는데..."', align: 'flex-end' },
+      ].map((item, i) => (
+        <div key={i} style={{
+          background: '#fff', border: '1px solid var(--color-border-light)',
+          borderRadius: i === 0 ? '16px 16px 16px 4px' : '16px 16px 4px 16px',
+          padding: '12px 16px', fontSize: '13px', fontWeight: 500,
+          color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '10px',
+          alignSelf: item.align, maxWidth: '90%',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+        }}>
+          <iconify-icon icon="solar:chat-round-dots-bold" style={{ fontSize: '16px', color: '#6c5ce7', flexShrink: 0 }}></iconify-icon>
+          {item.q}
+        </div>
+      ))}
     </div>
   );
 }
 
-function DashboardVisual() {
+function Part2Visual() {
   return (
-    <div style={{ padding: '20px 24px' }}>
-      {/* Dashboard header */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: '16px',
-      }}>
+    <div style={{ padding: '24px', background: 'linear-gradient(180deg, #f8faff 0%, #f8f9fc 100%)' }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <iconify-icon icon="solar:widget-bold" style={{ color: 'var(--color-accent)', fontSize: '18px' }}></iconify-icon>
-          <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-text)' }}>학습 대시보드</span>
+          <div style={{
+            width: '28px', height: '28px', borderRadius: '8px',
+            background: 'linear-gradient(135deg, #6c5ce7, #4a6cf7)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <iconify-icon icon="solar:widget-bold" style={{ color: '#fff', fontSize: '14px' }}></iconify-icon>
+          </div>
+          <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text)' }}>성적의 진짜 주인</span>
         </div>
-        <div style={{ display: 'flex', gap: '6px' }}>
-          {['전체', '주간', '월간'].map((t, i) => (
+        <div style={{ display: 'flex', gap: '4px' }}>
+          {['초등', '중등', '고등'].map((t, i) => (
             <span key={t} style={{
-              padding: '4px 12px',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '11px',
-              fontWeight: 500,
-              background: i === 0 ? 'var(--color-text)' : 'transparent',
+              padding: '4px 12px', borderRadius: 'var(--radius-full)', fontSize: '11px', fontWeight: 600,
+              background: i === 0 ? 'linear-gradient(135deg, #6c5ce7, #4a6cf7)' : 'transparent',
               color: i === 0 ? '#fff' : 'var(--color-text-tertiary)',
               border: i === 0 ? 'none' : '1px solid var(--color-border)',
             }}>{t}</span>
           ))}
         </div>
       </div>
-
-      {/* Stats row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+      {/* Owner cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px', marginBottom: '16px' }}>
         {[
-          { label: '해결된 질문', val: '2,957', change: '+40%', color: '#00c48c' },
-          { label: '학습 시간', val: '186h', change: '+12%', color: '#4a6cf7' },
-          { label: '정답률', val: '94.2%', change: '+8%', color: '#6c5ce7' },
+          { label: '초등', val: '학부모', icon: 'solar:users-group-two-rounded-bold', color: '#6c5ce7', bg: 'linear-gradient(135deg, #f0eeff 0%, #e8e4ff 100%)' },
+          { label: '중등', val: '학원', icon: 'solar:buildings-bold', color: '#4a6cf7', bg: 'linear-gradient(135deg, #eef2ff 0%, #e4ecff 100%)' },
+          { label: '고등', val: '학생 자신', icon: 'solar:user-bold', color: '#00b894', bg: 'linear-gradient(135deg, #e8faf3 0%, #d4f5e8 100%)' },
         ].map((s) => (
           <div key={s.label} style={{
-            background: '#fff',
-            border: '1px solid var(--color-border-light)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '12px',
+            background: s.bg, border: '1px solid var(--color-border-light)',
+            borderRadius: 'var(--radius-md)', padding: '14px 10px', textAlign: 'center',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
           }}>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}>{s.val}</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
-              <span style={{ fontSize: '11px', color: s.color, fontWeight: 600 }}>{s.change}</span>
-              <span style={{ fontSize: '10px', color: 'var(--color-text-tertiary)' }}>{s.label}</span>
-            </div>
+            <iconify-icon icon={s.icon} style={{ fontSize: '22px', color: s.color, marginBottom: '6px', display: 'block' }}></iconify-icon>
+            <div style={{ fontSize: '14px', fontWeight: 800, color: s.color, fontFamily: 'var(--font-display)' }}>{s.val}</div>
+            <div style={{ fontSize: '10px', color: 'var(--color-text-tertiary)', marginTop: '3px', fontWeight: 500 }}>{s.label} 성적</div>
           </div>
         ))}
       </div>
-
-      {/* Mini chart bars */}
+      {/* Progress bar */}
       <div style={{
-        display: 'flex',
-        alignItems: 'flex-end',
-        gap: '6px',
-        height: '60px',
-        padding: '0 8px',
+        background: '#fff', border: '1px solid var(--color-border-light)',
+        borderRadius: 'var(--radius-sm)', padding: '12px 14px',
+        display: 'flex', alignItems: 'center', gap: '10px',
       }}>
-        {[35, 55, 40, 70, 60, 80, 45, 90, 65, 75, 50, 85].map((h, i) => (
-          <div key={i} style={{
-            flex: 1,
-            height: `${h}%`,
-            borderRadius: '4px 4px 0 0',
-            background: i === 7 ? 'var(--color-accent)' : 'var(--color-accent-soft)',
-            transition: 'height 0.5s ease',
+        <span style={{ fontSize: '11px', color: 'var(--color-text-secondary)', whiteSpace: 'nowrap', fontWeight: 600 }}>자립도</span>
+        <div style={{ flex: 1, height: '8px', borderRadius: '4px', background: '#f0f1f4', overflow: 'hidden' }}>
+          <div style={{
+            width: '30%', height: '100%', borderRadius: '4px',
+            background: 'linear-gradient(90deg, #6c5ce7, #4a6cf7, #00b894)',
           }}></div>
-        ))}
+        </div>
+        <span style={{ fontSize: '11px', color: 'var(--color-accent)', fontWeight: 700 }}>30%</span>
       </div>
     </div>
   );
 }
 
-function CollabVisual() {
+function Part3Visual() {
+  return (
+    <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '8px', background: 'linear-gradient(180deg, #fefcfb 0%, #f8f9fc 100%)' }}>
+      {[
+        { label: '목표에 대한 착각', icon: 'solar:target-bold', danger: true },
+        { label: '시기에 대한 착각', icon: 'solar:clock-circle-bold', danger: true },
+        { label: '재능에 대한 착각', icon: 'solar:star-bold', danger: false },
+      ].map((step, i) => (
+        <div key={i} style={{
+          display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px',
+          borderRadius: 'var(--radius-md)',
+          background: step.danger ? 'linear-gradient(135deg, #fff5f3, #ffe8e3)' : '#fff',
+          border: `1px solid ${step.danger ? '#ffc4b8' : 'var(--color-border-light)'}`,
+          fontSize: '13px', fontWeight: 600,
+          color: step.danger ? '#c0392b' : 'var(--color-text)',
+          boxShadow: step.danger ? '0 2px 8px rgba(192,57,43,0.04)' : '0 2px 8px rgba(0,0,0,0.02)',
+        }}>
+          <div style={{
+            width: '28px', height: '28px', borderRadius: '8px', flexShrink: 0,
+            background: step.danger ? '#c0392b' : 'var(--color-bg-muted)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <iconify-icon icon={step.icon} style={{ fontSize: '14px', color: step.danger ? '#fff' : 'var(--color-text-secondary)' }}></iconify-icon>
+          </div>
+          {step.label}
+          {step.danger && <iconify-icon icon="solar:close-circle-bold" style={{ marginLeft: 'auto', fontSize: '18px', color: '#e74c3c' }}></iconify-icon>}
+          {!step.danger && <iconify-icon icon="solar:arrow-right-linear" style={{ marginLeft: 'auto', fontSize: '16px', color: 'var(--color-text-tertiary)' }}></iconify-icon>}
+        </div>
+      ))}
+      <div style={{
+        textAlign: 'center', padding: '6px 0', fontSize: '11px', fontWeight: 600,
+        color: 'var(--color-text-tertiary)', letterSpacing: '0.02em',
+      }}>
+        외 5가지 착각 더 보기
+      </div>
+    </div>
+  );
+}
+
+function Part4Visual() {
   return (
     <div style={{
-      padding: '24px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      minHeight: '160px',
+      padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      height: '100%', minHeight: '180px', background: 'linear-gradient(180deg, #f8faff 0%, #f8f9fc 100%)',
     }}>
-      <div style={{ position: 'relative', width: '120px', height: '120px' }}>
-        {/* Center hub */}
+      <div style={{ position: 'relative', width: '140px', height: '140px' }}>
+        {/* Outer ring */}
         <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '48px',
-          height: '48px',
-          borderRadius: '50%',
-          background: 'var(--color-accent)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 0 8px var(--color-accent-soft)',
+          position: 'absolute', inset: 0, borderRadius: '50%',
+          border: '2px dashed var(--color-border)', opacity: 0.5,
+        }}></div>
+        {/* Inner ring */}
+        <div style={{
+          position: 'absolute', inset: '20px', borderRadius: '50%',
+          border: '2px dashed var(--color-border)', opacity: 0.3,
+        }}></div>
+        {/* Center */}
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+          width: '52px', height: '52px', borderRadius: '50%',
+          background: 'linear-gradient(135deg, #6c5ce7, #4a6cf7)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 20px rgba(108,92,231,0.3), 0 0 0 8px rgba(108,92,231,0.08)',
         }}>
-          <iconify-icon icon="solar:chat-round-dots-bold" style={{ color: '#fff', fontSize: '20px' }}></iconify-icon>
+          <iconify-icon icon="solar:clock-circle-bold" style={{ color: '#fff', fontSize: '22px' }}></iconify-icon>
         </div>
-        {/* Orbit dots */}
-        {[0, 60, 120, 180, 240, 300].map((deg, i) => {
+        {/* Orbit labels */}
+        {[
+          { label: '초등', deg: -30, color: '#6c5ce7', bg: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' },
+          { label: '중등', deg: 90, color: '#00b894', bg: 'linear-gradient(135deg, #00b894, #55efc4)' },
+          { label: '고등', deg: 210, color: '#e17055', bg: 'linear-gradient(135deg, #e17055, #fab1a0)' },
+        ].map(({ label, deg, bg }, i) => {
           const rad = (deg * Math.PI) / 180;
-          const x = 50 + 50 * Math.cos(rad);
-          const y = 50 + 50 * Math.sin(rad);
+          const x = 50 + 47 * Math.cos(rad);
+          const y = 50 + 47 * Math.sin(rad);
           return (
             <div key={i} style={{
-              position: 'absolute',
-              left: `${x}%`,
-              top: `${y}%`,
-              transform: 'translate(-50%, -50%)',
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              background: ['#6c5ce7', '#00b894', '#fdcb6e', '#e17055', '#74b9ff', '#fd79a8'][i],
-              border: '2px solid #fff',
-              fontSize: '10px',
-              fontWeight: 700,
-              color: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              {['김', '이', '박', '최', '정', '한'][i]}
-            </div>
+              position: 'absolute', left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)',
+              padding: '5px 12px', borderRadius: 'var(--radius-full)',
+              background: bg, color: '#fff',
+              fontSize: '11px', fontWeight: 700, whiteSpace: 'nowrap',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+            }}>{label}</div>
           );
         })}
       </div>
@@ -263,251 +224,128 @@ function CollabVisual() {
   );
 }
 
-function PathVisual() {
-  return (
-    <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-      {[
-        { label: '기본 개념 학습', icon: 'solar:book-bold', done: true },
-        { label: '실전 문제 풀기', icon: 'solar:document-bold', done: true },
-        { label: '심화 분석', icon: 'solar:graph-up-bold', done: false },
-      ].map((step, i) => (
-        <div key={i} style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          padding: '10px 14px',
-          borderRadius: 'var(--radius-sm)',
-          background: step.done ? 'var(--color-accent-soft)' : '#fff',
-          border: `1px solid ${step.done ? 'var(--color-accent-light)' : 'var(--color-border)'}`,
-          fontSize: '12px',
-          fontWeight: 500,
-          color: step.done ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-        }}>
-          <iconify-icon icon={step.icon} style={{ fontSize: '16px' }}></iconify-icon>
-          {step.label}
-          {step.done && (
-            <iconify-icon icon="solar:check-circle-bold" style={{ marginLeft: 'auto', fontSize: '16px', color: 'var(--color-success)' }}></iconify-icon>
-          )}
-          {!step.done && (
-            <iconify-icon icon="solar:arrow-right-linear" style={{ marginLeft: 'auto', fontSize: '14px' }}></iconify-icon>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function VerifiedVisual() {
+function Part5Visual() {
   return (
     <div style={{
-      padding: '24px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      minHeight: '160px',
+      padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      height: '100%', minHeight: '180px', background: 'linear-gradient(180deg, #f8faff 0%, #f8f9fc 100%)',
     }}>
-      <div style={{
-        width: '100px',
-        height: '100px',
-        borderRadius: '28px',
-        background: 'linear-gradient(135deg, var(--color-accent-soft) 0%, #e8e4ff 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-      }}>
-        <iconify-icon icon="solar:shield-check-bold" style={{
-          fontSize: '48px',
-          color: 'var(--color-accent)',
-        }}></iconify-icon>
-        <div style={{
-          position: 'absolute',
-          bottom: '-4px',
-          right: '-4px',
-          width: '28px',
-          height: '28px',
-          borderRadius: '50%',
-          background: 'var(--color-success)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '3px solid #fff',
-        }}>
-          <iconify-icon icon="solar:check-circle-bold" style={{ color: '#fff', fontSize: '14px' }}></iconify-icon>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+        {/* Steps */}
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+          {['습관', '학습양', '효율', '전략'].map((step, i) => (
+            <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{
+                width: '36px', height: '36px', borderRadius: '10px',
+                background: [
+                  'linear-gradient(135deg, #6c5ce7, #a29bfe)',
+                  'linear-gradient(135deg, #4a6cf7, #74b9ff)',
+                  'linear-gradient(135deg, #00b894, #55efc4)',
+                  'linear-gradient(135deg, #e17055, #fab1a0)',
+                ][i],
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              }}>
+                <span style={{ color: '#fff', fontSize: '14px', fontWeight: 800 }}>{i + 1}</span>
+              </div>
+              {i < 3 && (
+                <iconify-icon icon="solar:arrow-right-linear" style={{ fontSize: '12px', color: 'var(--color-text-tertiary)' }}></iconify-icon>
+              )}
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {['습관', '학습양', '효율', '전략'].map((step, i) => (
+            <span key={step} style={{
+              fontSize: '10px', fontWeight: 600,
+              color: ['#6c5ce7', '#4a6cf7', '#00b894', '#e17055'][i],
+              width: '42px', textAlign: 'center',
+            }}>{step}</span>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-const visualMap = {
-  ai: AIVisual,
-  dashboard: DashboardVisual,
-  collab: CollabVisual,
-  path: PathVisual,
-  verified: VerifiedVisual,
-};
+const visualMap = { 1: Part1Visual, 2: Part2Visual, 3: Part3Visual, 4: Part4Visual, 5: Part5Visual };
 
-/* ── Main Features Component ── */
 export default function Features() {
   const containerRef = useRevealAll();
+  const navigate = useNavigate();
 
   return (
-    <section style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
+    <section id="diagnosis" style={{ padding: '120px 0', background: 'var(--color-bg)' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }} ref={containerRef}>
         {/* Section Header */}
         <div className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '6px 16px',
-            background: 'var(--color-accent-soft)',
-            color: 'var(--color-accent)',
-            borderRadius: 'var(--radius-full)',
-            fontSize: '13px',
-            fontWeight: 600,
-            marginBottom: '20px',
+            display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px',
+            background: 'var(--color-accent-soft)', color: 'var(--color-accent)',
+            borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, marginBottom: '20px',
           }}>
             <iconify-icon icon="solar:star-bold" style={{ fontSize: '16px' }}></iconify-icon>
-            주요 기능
+            성적 불변의 법칙
           </div>
           <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '42px',
-            fontWeight: 700,
-            lineHeight: 1.2,
-            color: 'var(--color-text)',
-            marginBottom: '16px',
-            letterSpacing: '-0.02em',
+            fontFamily: 'var(--font-display)', fontSize: '42px', fontWeight: 700, lineHeight: 1.2,
+            color: 'var(--color-text)', marginBottom: '16px', letterSpacing: '-0.02em',
           }}>
-            학습의 모든 순간을<br />더 스마트하게
+            왜 열심히 해도<br />성적은 제자리일까?
           </h2>
           <p style={{
-            fontSize: '17px',
-            color: 'var(--color-text-secondary)',
-            lineHeight: 1.7,
-            maxWidth: '500px',
-            margin: '0 auto',
+            fontSize: '17px', color: 'var(--color-text-secondary)', lineHeight: 1.7,
+            maxWidth: '500px', margin: '0 auto',
           }}>
-            AI와 전문가가 함께하는 차세대 교육 플랫폼의 핵심 기능을 소개합니다.
+            매번 기대하고 노력하지만 결과는 늘 같다면,<br />
+            원인부터 정확히 파악해야 합니다.
           </p>
         </div>
 
-        {/* Bento Grid: 2 large top, 3 small bottom */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '20px',
-          marginBottom: '20px',
-        }}>
-          {features.filter(f => f.size === 'large').map((f, i) => {
-            const Visual = visualMap[f.visual];
+        {/* Bento Grid: 2 large top */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px' }}>
+          {parts.filter(p => p.size === 'large').map((p, i) => {
+            const Visual = visualMap[p.num];
             return (
-              <div
-                key={f.title}
-                className={`reveal reveal-delay-${i + 1}`}
+              <div key={p.num} className={`reveal reveal-delay-${i + 1}`}
                 style={{
-                  background: 'var(--color-bg-soft)',
-                  borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--color-border-light)',
-                  overflow: 'hidden',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default',
+                  background: 'var(--color-bg-soft)', borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--color-border-light)', overflow: 'hidden',
+                  transition: 'all 0.3s ease', cursor: 'pointer',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-accent-light)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(108,92,231,0.08)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-border-light)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                onClick={() => navigate(`/topic/${p.num}`)}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(108,92,231,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                {/* Visual Area */}
-                <div style={{ borderBottom: '1px solid var(--color-border-light)', minHeight: '240px' }}>
-                  <Visual />
-                </div>
-                {/* Text Area */}
+                <div style={{ borderBottom: '1px solid var(--color-border-light)', minHeight: '260px' }}><Visual /></div>
                 <div style={{ padding: '28px 28px 32px' }}>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '20px',
-                    fontWeight: 700,
-                    color: 'var(--color-text)',
-                    marginBottom: '8px',
-                    letterSpacing: '-0.01em',
-                  }}>
-                    {f.title}
-                  </h3>
-                  <p style={{
-                    fontSize: '14px',
-                    color: 'var(--color-text-secondary)',
-                    lineHeight: 1.7,
-                  }}>
-                    {f.desc}
-                  </p>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 700, color: 'var(--color-text)', marginBottom: '8px', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                  <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{p.answer}</p>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom row: 3 small cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '20px',
-        }}>
-          {features.filter(f => f.size === 'small').map((f, i) => {
-            const Visual = visualMap[f.visual];
+        {/* Bottom row: 3 small */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+          {parts.filter(p => p.size === 'small').map((p, i) => {
+            const Visual = visualMap[p.num];
             return (
-              <div
-                key={f.title}
-                className={`reveal reveal-delay-${i + 3}`}
+              <div key={p.num} className={`reveal reveal-delay-${i + 3}`}
                 style={{
-                  background: 'var(--color-bg-soft)',
-                  borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--color-border-light)',
-                  overflow: 'hidden',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default',
+                  background: 'var(--color-bg-soft)', borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--color-border-light)', overflow: 'hidden',
+                  transition: 'all 0.3s ease', cursor: 'pointer',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-accent-light)';
-                  e.currentTarget.style.boxShadow = '0 8px 30px rgba(108,92,231,0.08)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-border-light)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                onClick={() => navigate(`/topic/${p.num}`)}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(108,92,231,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-light)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                <div style={{ borderBottom: '1px solid var(--color-border-light)' }}>
-                  <Visual />
-                </div>
+                <div style={{ borderBottom: '1px solid var(--color-border-light)' }}><Visual /></div>
                 <div style={{ padding: '24px 24px 28px' }}>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    color: 'var(--color-text)',
-                    marginBottom: '6px',
-                    letterSpacing: '-0.01em',
-                  }}>
-                    {f.title}
-                  </h3>
-                  <p style={{
-                    fontSize: '13px',
-                    color: 'var(--color-text-secondary)',
-                    lineHeight: 1.7,
-                  }}>
-                    {f.desc}
-                  </p>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 700, color: 'var(--color-text)', marginBottom: '6px', letterSpacing: '-0.01em' }}>{p.title}</h3>
+                  <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{p.answer}</p>
                 </div>
               </div>
             );

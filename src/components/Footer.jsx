@@ -80,33 +80,32 @@ export default function Footer() {
               lineHeight: 1.6,
               maxWidth: '260px',
             }}>
-              AI와 전문가가 함께하는<br />
-              차세대 교육 Q&A 플랫폼
+              진짜 공부를 하자, 하자공부<br />
+              학습습관 형성 전문 교육 플랫폼
             </p>
           </div>
 
           {/* Link Groups */}
           <div style={linkGroupStyle}>
             <div style={linkColumnStyle}>
-              <span style={linkHeaderStyle}>제품</span>
-              <span style={linkItemStyle}>기능 소개</span>
-              <span style={linkItemStyle}>요금제</span>
-              <span style={linkItemStyle}>업데이트</span>
-              <span style={linkItemStyle}>로드맵</span>
+              <span style={linkHeaderStyle}>서비스</span>
+              <span style={linkItemStyle}>스코 스탠다드</span>
+              <span style={linkItemStyle}>스코 스파르타</span>
+              <span style={linkItemStyle}>스코 블랙</span>
+              <span style={linkItemStyle}>스코 프리미엄</span>
+            </div>
+            <div style={linkColumnStyle}>
+              <span style={linkHeaderStyle}>신청</span>
+              <span style={linkItemStyle}>학습서비스 신청</span>
+              <span style={linkItemStyle}>학부모 전문가 과정</span>
+              <span style={linkItemStyle}>예비원장 전문가 과정</span>
             </div>
             <div style={linkColumnStyle}>
               <span style={linkHeaderStyle}>고객지원</span>
-              <span style={linkItemStyle}>도움말 센터</span>
               <span style={linkItemStyle}>문의하기</span>
-              <span style={linkItemStyle}>가이드</span>
-              <span style={linkItemStyle}>API 문서</span>
-            </div>
-            <div style={linkColumnStyle}>
-              <span style={linkHeaderStyle}>회사</span>
-              <span style={linkItemStyle}>소개</span>
-              <span style={linkItemStyle}>채용</span>
-              <span style={linkItemStyle}>블로그</span>
-              <span style={linkItemStyle}>보도자료</span>
+              <span style={linkItemStyle}>자주 묻는 질문</span>
+              <span style={linkItemStyle}>이용약관</span>
+              <span style={linkItemStyle}>개인정보처리방침</span>
             </div>
           </div>
         </div>
@@ -119,7 +118,7 @@ export default function Footer() {
           <div style={{ display: 'flex', gap: '16px' }}>
             {[
               { icon: 'solar:letter-bold', label: 'Email' },
-              { icon: 'solar:chat-round-dots-bold', label: 'Community' },
+              { icon: 'solar:phone-bold', label: 'Phone' },
             ].map((s) => (
               <span
                 key={s.label}

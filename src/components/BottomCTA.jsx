@@ -2,7 +2,7 @@ import { useReveal } from '../hooks/useReveal';
 
 const sectionStyle = {
   padding: '120px 0',
-  background: 'var(--color-bg)',
+  background: 'var(--color-bg-soft)',
 };
 
 const cardStyle = {
@@ -30,7 +30,7 @@ export default function BottomCTA() {
   const ref = useReveal();
 
   return (
-    <section style={sectionStyle}>
+    <section id="contact" style={sectionStyle}>
       <div style={{ padding: '0 var(--container-padding)' }}>
         <div style={cardStyle} ref={ref} className="reveal">
           {/* Background glows */}
@@ -53,7 +53,7 @@ export default function BottomCTA() {
               marginBottom: '28px',
             }}>
               <iconify-icon icon="solar:lightning-bold" style={{ fontSize: '16px' }}></iconify-icon>
-              지금 바로 시작하세요
+              자녀를 방치하지 마십시오
             </div>
 
             <h2 style={{
@@ -65,8 +65,8 @@ export default function BottomCTA() {
               letterSpacing: '-0.02em',
               marginBottom: '16px',
             }}>
-              당신의 학습을<br />
-              한 단계 끌어올리세요
+              1년 뒤에도 성적이<br />
+              제자리라면
             </h2>
 
             <p style={{
@@ -76,11 +76,11 @@ export default function BottomCTA() {
               maxWidth: '440px',
               margin: '0 auto 40px',
             }}>
-              52,000명 이상의 학생이 SCOLABS와 함께<br />
-              더 스마트하게 공부하고 있습니다.
+              오르는 것 같은 기분은 착각일 뿐입니다.<br />
+              지금, 학습 습관부터 바꿔야 합니다.
             </p>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
               <button
                 style={{
                   padding: '16px 36px',
@@ -103,7 +103,7 @@ export default function BottomCTA() {
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                무료로 시작하기
+                학습서비스 신청
               </button>
               <button
                 style={{
@@ -118,12 +118,36 @@ export default function BottomCTA() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                자세히 알아보기
+                학부모 전문가 과정
+              </button>
+              <button
+                style={{
+                  padding: '16px 32px',
+                  background: 'rgba(255,255,255,0.08)',
+                  color: '#fff',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '15px',
+                  fontWeight: 600,
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                예비원장 전문가 과정
               </button>
             </div>
           </div>
